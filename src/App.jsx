@@ -1,10 +1,10 @@
-import LoginPage from './pages/LoginPage';
+import AuthPage from './pages/AuthPage';
 import Toast from './components/utils/Toast';
 
 const App = () => {
   return (
     <>
-      <LoginPage />
+      <AuthPage />
       <Toast />
     </>
   );
