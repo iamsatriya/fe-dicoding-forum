@@ -1,7 +1,11 @@
+import LoginPage from './pages/LoginPage';
+import Toast from './components/utils/Toast';
+
 const App = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <LoginPage />
+      <Toast />
     </>
   );
 };
