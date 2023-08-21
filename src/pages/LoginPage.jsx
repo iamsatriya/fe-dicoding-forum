@@ -1,10 +1,13 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import useAuth from './hooks/useAuth';
 import ButtonPrimary from '../components/buttons/ButtonPrimary';
 import InputText from '../components/inputs/InputText';
 
-const LoginPage = ({ onOpenRegister }) => {
-  const { handleSubmit, errors, onSubmitLogin, register } = useAuth();
+function LoginPage({ onOpenRegister }) {
+  const {
+    handleSubmit, errors, onSubmitLogin, register,
+  } = useAuth();
 
   return (
     <>
@@ -30,6 +33,7 @@ const LoginPage = ({ onOpenRegister }) => {
       <p className="text-center my-2">
         or
         <button
+          type="button"
           onClick={onOpenRegister}
           className="text-primary visited:text-primary active:text-primary inline-block ml-1"
         >
@@ -38,10 +42,10 @@ const LoginPage = ({ onOpenRegister }) => {
       </p>
     </>
   );
-};
+}
 
 LoginPage.propTypes = {
-  onOpenRegister: PropTypes.func.isRequired
+  onOpenRegister: PropTypes.func.isRequired,
 };
 
 export default LoginPage;

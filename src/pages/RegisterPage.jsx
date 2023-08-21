@@ -1,11 +1,14 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import useAuth from './hooks/useAuth';
 import ButtonPrimary from '../components/buttons/ButtonPrimary';
 import InputText from '../components/inputs/InputText';
 
-const RegisterPage = ({ onOpenLogin }) => {
-  const { handleSubmit, errors, onSubmitRegister, register } = useAuth();
-  
+function RegisterPage({ onOpenLogin }) {
+  const {
+    handleSubmit, errors, onSubmitRegister, register,
+  } = useAuth();
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitRegister)}>
@@ -46,6 +49,7 @@ const RegisterPage = ({ onOpenLogin }) => {
       <p className="text-center my-2">
         Already have an account?
         <button
+          type="button"
           onClick={onOpenLogin}
           className="text-primary visited:text-primary active:text-primary inline-block mx-1"
         >
@@ -55,10 +59,10 @@ const RegisterPage = ({ onOpenLogin }) => {
       </p>
     </>
   );
-};
+}
 
 RegisterPage.propTypes = {
-  onOpenLogin: PropTypes.func.isRequired
+  onOpenLogin: PropTypes.func.isRequired,
 };
 
 export default RegisterPage;
