@@ -1,10 +1,10 @@
-import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
 import Toast from './components/utils/Toast';
 
 const App = () => {
   return (
     <>
-      <AuthPage />
+      <HomePage />
       <Toast />
     </>
   );

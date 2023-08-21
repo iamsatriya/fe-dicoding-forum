@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-const ButtonPrimary = ({ children, fullwidth }) => {
+const ButtonPrimary = ({ children, fullwidth, small }) => {
   return (
     <button
-      className={`${
-        fullwidth ? 'w-full' : 'w-auto'
-      } font-poppins font-semibold text-white bg-primary px-4 py-4 rounded-lg flex-1`}
+      className={`${fullwidth ? 'w-full' : 'w-auto'} ${
+        small ? 'p-2 max-h-14' : 'p-4'
+      } font-poppins font-semibold text-white bg-primary rounded-lg flex-1`}
     >
       {children}
     </button>
@@ -14,7 +14,8 @@ const ButtonPrimary = ({ children, fullwidth }) => {
 
 ButtonPrimary.propTypes = {
   children: PropTypes.node.isRequired,
-  fullwidth: PropTypes.bool
+  fullwidth: PropTypes.bool,
+  small: PropTypes.bool
 };
 
 export default ButtonPrimary;
