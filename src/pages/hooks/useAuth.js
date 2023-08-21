@@ -5,23 +5,24 @@ const useAuth = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setError
+    setError,
   } = useForm();
 
   const isPasswordMatch = (password, confirmPassword) => password === confirmPassword;
 
   const onSubmitRegister = (data) => {
-    console.log('submit register', data);
-    console.log(isPasswordMatch);
-    if (!isPasswordMatch(data.password, data.confirm_password))
+    if (!isPasswordMatch(data.password, data.confirm_password)) {
       setError('confirm_password', { type: 'custom', message: "Password didn't match!" });
+    }
   };
 
-  const onSubmitLogin = (data) => {
-    console.log('submit login', data);
+  const onSubmitLogin = () => {
+
   };
 
-  return { register, handleSubmit, errors, onSubmitRegister, onSubmitLogin };
+  return {
+    register, handleSubmit, errors, onSubmitRegister, onSubmitLogin,
+  };
 };
 
 export default useAuth;

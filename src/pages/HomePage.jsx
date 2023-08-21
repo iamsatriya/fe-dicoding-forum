@@ -1,19 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../assets/img/logo.png';
 import ThreadItems from '../components/threads/ThreadItems';
 import InputText from '../components/inputs/InputText';
 import ButtonPrimary from '../components/buttons/ButtonPrimary';
 
-const HomePage = () => {
+function HomePage() {
   const formRef = useRef();
   const [isShowCreate, setIsShowCreate] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', listenToScroll);
-    return () => window.removeEventListener('scroll', listenToScroll);
-  }, []);
-
-  const titleRef = useRef();
 
   const listenToScroll = () => {
     const formHeight = formRef?.current?.clientHeight;
@@ -24,8 +17,15 @@ const HomePage = () => {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener('scroll', listenToScroll);
+    return () => window.removeEventListener('scroll', listenToScroll);
+  }, []);
+
+  const titleRef = useRef();
+
   const onScrollToTop = () => {
-    scrollTo(0, 0);
+    window.scrollTo(0, 0);
     titleRef.current?.focus();
   };
 
@@ -33,12 +33,12 @@ const HomePage = () => {
     <>
       <header className="p-4 h-20 z-10 bg-[#fff] flex justify-between items-center fixed top-0 w-full">
         <section>
-          <img src={Logo} className="w-11 h-11" />
+          <img src={Logo} alt="Logo" className="w-11 h-11" />
         </section>
         <section>
-          <button className="inline-block mx-2">Home</button>
-          <button className="inline-block mx-2">Leaderboard</button>
-          <button className="inline-block mx-2 text-primary">Logout</button>
+          <button type="button" className="inline-block mx-2">Home</button>
+          <button type="button" className="inline-block mx-2">Leaderboard</button>
+          <button type="button" className="inline-block mx-2 text-primary">Logout</button>
         </section>
       </header>
       <main className="relative mb-4 top-20">
@@ -64,6 +64,7 @@ const HomePage = () => {
           <ThreadItems />
         </section>
         <button
+          type="button"
           className={`${
             isShowCreate ? 'opacity-100' : 'opacity-0'
           } fixed bottom-4 right-4 transition-opacity rounded-lg text-5xl text-white bg-primary w-12 lg:w-14 h-12 lg:h-14 grid place-items-center`}
@@ -74,6 +75,6 @@ const HomePage = () => {
       </main>
     </>
   );
-};
+}
 
 export default HomePage;

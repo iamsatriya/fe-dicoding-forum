@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import Logo from '../assets/img/logo_in_black.png';
 
-const AuthPage = () => {
+function AuthPage() {
   const [isRegister, setIsRegister] = useState(true);
 
   const onOpenLogin = () => {
@@ -17,7 +17,7 @@ const AuthPage = () => {
   return (
     <section className="flex flex-col lg:min-h-screen lg:flex-row">
       <section className="grid place-items-center m-4 lg:flex-1">
-        <img src={Logo} />
+        <img src={Logo} alt="Dicoding Forum Logo" />
       </section>
       <section className="grid place-items-center p-4 lg:flex-1">
         <section className="w-full">
@@ -28,11 +28,13 @@ const AuthPage = () => {
               </span>
             </span>
           </section>
-          {isRegister ? <RegisterPage onOpenLogin={onOpenLogin} /> : <LoginPage onOpenRegister={onOpenRegister} />}
+          {isRegister
+            ? <RegisterPage onOpenLogin={onOpenLogin} />
+            : <LoginPage onOpenRegister={onOpenRegister} />}
         </section>
       </section>
     </section>
   );
-};
+}
 
 export default AuthPage;
