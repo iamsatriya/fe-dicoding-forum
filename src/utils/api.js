@@ -78,6 +78,10 @@ const api = (() => {
     }
   }
 
+  function logout() {
+    putAccessToken('');
+  }
+
   async function getOwnProfile() {
     try {
       const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
@@ -305,6 +309,7 @@ const api = (() => {
 
   return {
     register,
+    logout,
     login,
     getOwnProfile,
     getAllUsers,

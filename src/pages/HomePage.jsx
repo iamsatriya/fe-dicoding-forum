@@ -48,7 +48,7 @@ function HomePage() {
             <InputText name="body" title="Body" register={() => {}} />
             <section className="flex flex-col lg:flex-row">
               <section className="grow lg:mr-10">
-                <InputText name="kategori" title="Kategori" register={() => {}} />
+                <InputText name="category" title="Category" register={() => {}} />
               </section>
               <ButtonPrimary small>Create Thread</ButtonPrimary>
             </section>
