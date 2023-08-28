@@ -16,7 +16,7 @@ function HomePage() {
     threads = [],
     authUser,
   } = useSelector((states) => states);
-  
+
   const listenToScroll = () => {
     const formHeight = formRef?.current?.clientHeight;
     if (
@@ -42,6 +42,10 @@ function HomePage() {
     window.scrollTo(0, 0);
     titleRef.current?.focus();
   };
+
+  const onCreateThreads(event) => {
+    
+  }
 
   return (
     <>
