@@ -10,7 +10,7 @@ const ActionType = {
   NEUTRAL_VOTE_THREAD: "NEUTRAL_VOTE_THREAD",
 };
 
-function receiveThreadsActionCreator(threads) {
+function receiveThreadsActionCreator({ threads }) {
   return {
     type: ActionType.RECEIVE_THREADS,
     payload: {
@@ -125,3 +125,16 @@ function asyncNeutralVoteThread({
     dispatch(hideLoading());
   };
 }
+
+export {
+  ActionType,
+  receiveThreadsActionCreator,
+  createThreadActionCreator,
+  upVoteThreadActionCreator,
+  downVoteThreadActionCreator,
+  neutralVoteThreadActionCreator,
+  asyncCreateThread,
+  asyncUpVoteThread,
+  asyncDownVoteThread,
+  asyncNeutralVoteThread,
+};

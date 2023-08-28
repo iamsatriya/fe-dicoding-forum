@@ -70,3 +70,5 @@ function threadsReducer(threads = [], action = {}) {
       return threads;
   }
 }
+
+export default threadsReducer;

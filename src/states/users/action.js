@@ -1,12 +1,12 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import toast from 'react-hot-toast';
-import api from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import toast from "react-hot-toast";
+import api from "../../utils/api";
 
 const ActionType = {
-  RECEIVE_USERS: 'RECEIVE_USERS',
+  RECEIVE_USERS: "RECEIVE_USERS",
 };
 
-function receiveUsersActionCreator(users) {
+function receiveUsersActionCreator({ users }) {
   return {
     type: ActionType.RECEIVE_USERS,
     payload: {
@@ -22,14 +22,10 @@ function asyncRegisterUser({ name, email, password }) {
     if (error) {
       toast.error(message);
     } else {
-      toast.success('Success register!');
+      toast.success("Success register!");
     }
     dispatch(hideLoading());
   };
 }
 
-export {
-  ActionType,
-  receiveUsersActionCreator,
-  asyncRegisterUser,
-};
+export { ActionType, receiveUsersActionCreator, asyncRegisterUser };

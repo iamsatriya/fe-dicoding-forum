@@ -24,10 +24,12 @@ function asyncPopulateUsersAndThreads() {
     } else if (threadError) {
       toast.error(threadMessage);
     } else {
-      dispatch(receiveUsersActionCreator(usersData));
-      dispatch(receiveThreadsActionCreator(threadData));
+      dispatch(receiveUsersActionCreator({ users: usersData }));
+      dispatch(receiveThreadsActionCreator({ threads: threadData }));
     }
 
     dispatch(hideLoading());
   };
 }
+
+export { asyncPopulateUsersAndThreads };
