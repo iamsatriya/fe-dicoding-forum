@@ -1,8 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import {
+  asyncUpVoteThread,
+  asyncDownVoteThread,
+  asyncNeutralVoteThread,
+} from "../../states/threads/action";
+import { postedAt } from "../../utils/time-formater";
 import Logo from "../../assets/img/logo.png";
 
 function ThreadItems({
+  userId,
+  id,
   title,
   body,
   category,
@@ -12,6 +21,28 @@ function ThreadItems({
   downVotesBy,
   totalComments,
 }) {
+  const dispatch = useDispatch();
+
+  const isUpVoteIncludesUserId = upVotesBy.includes(userId);
+
+  const isDownVoteIncludesUserId = downVotesBy.includes(userId);
+
+  const onClickUpVote = () => {
+    if (isUpVoteIncludesUserId) {
+      dispatch(asyncNeutralVoteThread({ threadId: id, neutralFromUp: true }));
+    } else {
+      dispatch(asyncUpVoteThread({ threadId: id }));
+    }
+  };
+
+  const onClickDownVote = () => {
+    if (isDownVoteIncludesUserId) {
+      dispatch(asyncNeutralVoteThread({ threadId: id, neutralFromDown: true }));
+    } else {
+      dispatch(asyncDownVoteThread({ threadId: id }));
+    }
+  };
+
   return (
     <article className="m-4 rounded-lg bg-[#f1f1f1] p-4 ">
       <p className="font-poppins font-semibold text-3xl truncate">{title}</p>
@@ -24,7 +55,9 @@ function ThreadItems({
           />
           <section className="flex flex-col ml-2">
             <span className="font-poppins font-semibold">{owner.name}</span>
-            <span className="text-gray-400 font-light">6h ago</span>
+            <span className="text-gray-400 font-light">
+              {postedAt(createdAt)}
+            </span>
           </section>
         </section>
         <section>
@@ -39,7 +72,12 @@ function ThreadItems({
           <section className="flex items-center mr-2">
             <button
               type="button"
-              className="mr-1 bg-primary text-white h-7 w-7 grid place-items-center rounded-md"
+              className={`${
+                isUpVoteIncludesUserId
+                  ? "bg-primary text-white"
+                  : "text-primary bg-white"
+              } mr-1 h-7 w-7 grid place-items-center rounded-md`}
+              onClick={onClickUpVote}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,12 +94,17 @@ function ThreadItems({
                 />
               </svg>
             </button>
-            <span>12</span>
+            <span>{upVotesBy.length}</span>
           </section>
           <section className="flex items-center">
             <button
               type="button"
-              className="mr-1 bg-primary text-white h-7 w-7 grid place-items-center rounded-md"
+              className={`${
+                isDownVoteIncludesUserId
+                  ? "bg-primary text-white"
+                  : "text-primary bg-white"
+              } mr-1 h-7 w-7 grid place-items-center rounded-md rotate-180`}
+              onClick={onClickDownVote}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +121,7 @@ function ThreadItems({
                 />
               </svg>
             </button>
-            <span>12</span>
+            <span>{downVotesBy.length}</span>
           </section>
         </section>
         <button
@@ -93,6 +136,8 @@ function ThreadItems({
 }
 
 ThreadItems.propTypes = {
+  userId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,

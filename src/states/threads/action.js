@@ -66,11 +66,9 @@ function asyncCreateThread({ title, body, category = "" }) {
       body,
       category,
     });
-    console.log("async create thread", data, error, message);
     if (error) {
       toast.error(message);
     } else {
-      console.log("thread", data);
       dispatch(createThreadActionCreator(data));
       toast.success("Thread created");
     }
@@ -82,11 +80,13 @@ function asyncUpVoteThread({ threadId }) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
-    dispatch(upVoteThreadActionCreator({ threadId, userId: authUser }));
+    dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
     const { error, message, data } = await api.upVoteThread({ threadId });
     if (error) {
       toast.error(message);
-      dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser }));
+      dispatch(
+        neutralVoteThreadActionCreator({ threadId, userId: authUser.id }),
+      );
     }
     dispatch(hideLoading());
   };
@@ -96,11 +96,13 @@ function asyncDownVoteThread({ threadId }) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
-    dispatch(downVoteThreadActionCreator({ threadId, userId: authUser }));
+    dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
     const { error, message, data } = await api.downVoteThread({ threadId });
     if (error) {
       toast.error(message);
-      dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser }));
+      dispatch(
+        neutralVoteThreadActionCreator({ threadId, userId: authUser.id }),
+      );
     }
     dispatch(hideLoading());
   };
@@ -114,15 +116,17 @@ function asyncNeutralVoteThread({
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
-    dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser }));
+    dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
     const { error, message, data } = await api.neutralVoteThread({ threadId });
     if (error) {
       toast.error(message);
       if (neutralFromUp) {
-        dispatch(upVoteThreadActionCreator({ threadId, userId: authUser }));
+        dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
       }
       if (neutralFromDown) {
-        dispatch(downVoteThreadActionCreator({ threadId, userId: authUser }));
+        dispatch(
+          downVoteThreadActionCreator({ threadId, userId: authUser.id }),
+        );
       }
     }
     dispatch(hideLoading());

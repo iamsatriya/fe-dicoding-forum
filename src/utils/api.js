@@ -139,7 +139,6 @@ const api = (() => {
       if (status !== "success") {
         throw new Error(message);
       }
-      console.log("responseJson.data", responseJson.data);
       const {
         data: { thread },
       } = responseJson;

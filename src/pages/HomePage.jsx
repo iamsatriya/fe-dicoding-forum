@@ -122,6 +122,8 @@ function HomePage() {
           {threads.map((thread) => (
             <ThreadItems
               key={thread.id}
+              userId={authUser.id}
+              id={thread.id}
               title={thread.title}
               body={thread.body}
               category={thread.category}

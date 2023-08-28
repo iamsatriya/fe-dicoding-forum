@@ -1,7 +1,6 @@
 import { ActionType } from "./action";
 
 function threadsReducer(threads = [], action = {}) {
-  console.log("threads reducer", action);
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
       return action.payload.threads;
@@ -20,7 +19,7 @@ function threadsReducer(threads = [], action = {}) {
             ...thread,
             upVotesBy: isIncludeInUpVotes
               ? thread.upVotesBy.filter((id) => id !== action.payload.userId)
-              : thread.upVotesBy.push(action.payload.userId),
+              : thread.upVotesBy.concat([action.payload.userId]),
             downVotesBy: isIncludeInDownVotes
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.downVotesBy,
@@ -40,7 +39,7 @@ function threadsReducer(threads = [], action = {}) {
             ...thread,
             downVotesBy: isIncludeInDownVotes
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
-              : thread.downVotesBy.push(action.payload.userId),
+              : thread.downVotesBy.concat([action.payload.userId]),
             upVotesBy: isIncludeInUpVotes
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.upVotesBy,
