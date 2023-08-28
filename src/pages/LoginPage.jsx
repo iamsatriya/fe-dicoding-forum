@@ -1,13 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import useAuth from './hooks/useAuth';
-import ButtonPrimary from '../components/buttons/ButtonPrimary';
-import InputText from '../components/inputs/InputText';
+import React from "react";
+import PropTypes from "prop-types";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import ButtonPrimary from "../components/buttons/ButtonPrimary";
+import InputText from "../components/inputs/InputText";
+import { asyncSetAuthUser } from "../states/authUser/action";
 
 function LoginPage({ onOpenRegister }) {
   const {
-    handleSubmit, errors, onSubmitLogin, register,
-  } = useAuth();
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm();
+
+  const dispatch = useDispatch();
+
+  const onSubmitLogin = ({ email, password }) => {
+    dispatch(asyncSetAuthUser({ email, password }));
+  };
 
   return (
     <>
@@ -28,7 +39,9 @@ function LoginPage({ onOpenRegister }) {
           error={errors.password?.message}
           register={register}
         />
-        <ButtonPrimary fullwidth>Login</ButtonPrimary>
+        <ButtonPrimary fullwidth type="submit">
+          Login
+        </ButtonPrimary>
       </form>
       <p className="text-center my-2">
         or

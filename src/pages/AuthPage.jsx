@@ -4,7 +4,7 @@ import RegisterPage from './RegisterPage';
 import Logo from '../assets/img/logo_in_black.png';
 
 function AuthPage() {
-  const [isRegister, setIsRegister] = useState(true);
+  const [isRegister, setIsRegister] = useState(false);
 
   const onOpenLogin = () => {
     setIsRegister(false);
