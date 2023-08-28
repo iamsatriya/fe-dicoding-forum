@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import { asyncUnsetAuthUser } from "../states/authUser/action";
+import { asyncCreateThread } from "../states/threads/action";
 import Logo from "../assets/img/logo.png";
 import ThreadItems from "../components/threads/ThreadItems";
 import InputText from "../components/inputs/InputText";
@@ -16,6 +19,14 @@ function HomePage() {
     threads = [],
     authUser,
   } = useSelector((states) => states);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+    reset,
+  } = useForm();
 
   const listenToScroll = () => {
     const formHeight = formRef?.current?.clientHeight;
@@ -43,9 +54,15 @@ function HomePage() {
     titleRef.current?.focus();
   };
 
-  const onCreateThreads(event) => {
-    
-  }
+  const onCreateThreads = (data) => {
+    const { title, body, category } = data;
+    dispatch(asyncCreateThread({ title, body, category }));
+    reset();
+  };
+
+  const onLogout = () => {
+    dispatch(asyncUnsetAuthUser());
+  };
 
   return (
     <>
@@ -60,30 +77,44 @@ function HomePage() {
           <button type="button" className="inline-block mx-2">
             Leaderboard
           </button>
-          <button type="button" className="inline-block mx-2 text-primary">
+          <button
+            type="button"
+            className="inline-block mx-2 text-primary"
+            onClick={onLogout}
+          >
             Logout
           </button>
         </section>
       </header>
       <main className="relative mb-4 top-20">
         <section className="mx-4 p-4 rounded-lg" ref={formRef}>
-          <form>
+          <form onSubmit={handleSubmit(onCreateThreads)}>
             <InputText
               name="title"
               title="Title"
-              register={() => {}}
+              register={register}
               ref={titleRef}
+              error={errors.title?.message}
             />
-            <InputText name="body" title="Body" register={() => {}} />
+            <InputText
+              name="body"
+              title="Body"
+              register={register}
+              error={errors.body?.message}
+            />
             <section className="flex flex-col lg:flex-row">
               <section className="grow lg:mr-10">
                 <InputText
                   name="category"
                   title="Category"
-                  register={() => {}}
+                  isRequired={false}
+                  register={register}
+                  error={errors.category?.message}
                 />
               </section>
-              <ButtonPrimary small>Create Thread</ButtonPrimary>
+              <ButtonPrimary small type="submit">
+                Create Thread
+              </ButtonPrimary>
             </section>
           </form>
         </section>

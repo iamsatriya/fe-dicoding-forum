@@ -66,9 +66,12 @@ function asyncCreateThread({ title, body, category = "" }) {
       body,
       category,
     });
+    console.log("async create thread", data, error, message);
     if (error) {
       toast.error(message);
     } else {
+      console.log("thread", data);
+      dispatch(createThreadActionCreator(data));
       toast.success("Thread created");
     }
     dispatch(hideLoading());
