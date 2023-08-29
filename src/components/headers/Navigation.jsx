@@ -10,7 +10,7 @@ function Navigation({ onLogout }) {
   };
 
   const onClickToLeaderboard = () => {
-    navigate("/leaderboard");
+    navigate("/leaderboards");
   };
 
   return (
