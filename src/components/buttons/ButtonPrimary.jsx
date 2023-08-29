@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function ButtonPrimary({ children, fullwidth, small, type }) {
+function ButtonPrimary({ children, fullwidth, small }) {
   return (
     <button
-      type={type}
+      type="submit"
       className={`${fullwidth ? "w-full" : "w-auto"} ${
         small ? "p-2 max-h-14" : "p-4"
       } font-poppins font-semibold text-white bg-primary rounded-lg flex-1`}
@@ -17,14 +17,12 @@ function ButtonPrimary({ children, fullwidth, small, type }) {
 ButtonPrimary.defaultProps = {
   fullwidth: false,
   small: false,
-  type: "button",
 };
 
 ButtonPrimary.propTypes = {
   children: PropTypes.node.isRequired,
   fullwidth: PropTypes.bool,
   small: PropTypes.bool,
-  type: PropTypes.string,
 };
 
 export default ButtonPrimary;

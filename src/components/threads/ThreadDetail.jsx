@@ -1,7 +1,8 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
-import { postedAt } from "../../utils/time-formater";
+import postedAt from "../../utils/time-formater";
 import {
   asyncUpVoteThreadDetail,
   asyncDownVoteThreadDetail,
@@ -52,7 +53,10 @@ function ThreadDetail({
 
   return (
     <article className="rounded-lg bg-[#f1f1f1] p-4 ">
-      <button className="font-poppins font-semibold text-3xl truncate">
+      <button
+        className="font-poppins font-semibold text-3xl truncate"
+        type="button"
+      >
         {title}
       </button>
       <section className="flex justify-between items-center my-2">
@@ -122,8 +126,8 @@ ThreadDetail.propTypes = {
   createdAt: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  upVotesBy: PropTypes.array.isRequired,
-  downVotesBy: PropTypes.array.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   commentsLength: PropTypes.number.isRequired,
 };
 

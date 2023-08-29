@@ -1,7 +1,8 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { BiChevronUp, BiChevronDown } from "react-icons/bi";
-import { postedAt } from "../../utils/time-formater";
+import postedAt from "../../utils/time-formater";
 import {
   asyncUpVoteCommentThreadDetail,
   asyncDownVoteCommentThreadDetail,

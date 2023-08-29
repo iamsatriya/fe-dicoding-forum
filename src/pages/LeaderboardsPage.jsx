@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncPopulateLeaderboards } from "../states/leaderboards/action";
 
@@ -27,7 +27,11 @@ function LeaderboardsPage() {
               <p className="text-white">{index + 1}</p>
             </section>
             <section className="w-11/12 ml-4 bg-gray-100 p-2 rounded-lg flex">
-              <img alt={user.user.name} src={user.user.avatar} className="rounded-lg mr-2"/>
+              <img
+                alt={user.user.name}
+                src={user.user.avatar}
+                className="rounded-lg mr-2"
+              />
               <section>
                 <p className="font-semibold font-poppins">{user.user.name}</p>
                 <p className="font-light text-gray-500">{user.user.email}</p>

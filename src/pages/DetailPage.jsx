@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -18,7 +18,6 @@ function DetailPage() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
   } = useForm();
 
@@ -79,27 +78,24 @@ function DetailPage() {
         <p className="text-primary-light text-sm">{errors.comment?.message}</p>
       )}
       {comments.map(
-        (
-          {
-            id: commentId,
-            content,
-            createdAt,
-            owner: { name, avatar },
-            upVotesBy,
-            downVotesBy,
-          },
-          index,
-        ) => (
+        ({
+          id: commentId,
+          content,
+          createdAt: commentCreatedAt,
+          owner: { name: commentName, avatar: commentAvatar },
+          upVotesBy: commentUpVotesBy,
+          downVotesBy: commentDownVotesBy,
+        }) => (
           <CommentItem
-            key={index}
+            key={commentId}
             commentId={commentId}
             threadId={id}
             content={content}
-            createdAt={createdAt}
-            name={name}
-            avatar={avatar}
-            upVotesBy={upVotesBy}
-            downVotesBy={downVotesBy}
+            createdAt={commentCreatedAt}
+            name={commentName}
+            avatar={commentAvatar}
+            upVotesBy={commentUpVotesBy}
+            downVotesBy={commentDownVotesBy}
           />
         ),
       )}

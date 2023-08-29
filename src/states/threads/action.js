@@ -81,7 +81,7 @@ function asyncUpVoteThread({ threadId }) {
     dispatch(showLoading());
     const { authUser } = getState();
     dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    const { error, message, data } = await api.upVoteThread({ threadId });
+    const { error, message } = await api.upVoteThread({ threadId });
     if (error) {
       toast.error(message);
       dispatch(
@@ -97,7 +97,7 @@ function asyncDownVoteThread({ threadId }) {
     dispatch(showLoading());
     const { authUser } = getState();
     dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    const { error, message, data } = await api.downVoteThread({ threadId });
+    const { error, message } = await api.downVoteThread({ threadId });
     if (error) {
       toast.error(message);
       dispatch(
@@ -117,7 +117,7 @@ function asyncNeutralVoteThread({
     dispatch(showLoading());
     const { authUser } = getState();
     dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
-    const { error, message, data } = await api.neutralVoteThread({ threadId });
+    const { error, message } = await api.neutralVoteThread({ threadId });
     if (error) {
       toast.error(message);
       if (neutralFromUp) {

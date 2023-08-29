@@ -7,8 +7,7 @@ import {
   asyncDownVoteThread,
   asyncNeutralVoteThread,
 } from "../../states/threads/action";
-import { postedAt } from "../../utils/time-formater";
-import Logo from "../../assets/img/logo.png";
+import postedAt from "../../utils/time-formater";
 
 function ThreadItems({
   userId,
@@ -21,7 +20,6 @@ function ThreadItems({
   upVotesBy,
   downVotesBy,
   totalComments,
-  isDisabled,
 }) {
   const navigate = useNavigate();
 
@@ -54,6 +52,7 @@ function ThreadItems({
   return (
     <article className="m-4 rounded-lg bg-[#f1f1f1] p-4 ">
       <button
+        type="button"
         className="font-poppins font-semibold text-3xl truncate"
         onClick={onClickToDetail}
       >
@@ -156,9 +155,14 @@ ThreadItems.propTypes = {
   body: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  owner: PropTypes.object.isRequired,
-  upVotesBy: PropTypes.array.isRequired,
-  downVotesBy: PropTypes.array.isRequired,
+  owner: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    avatar: PropTypes.string,
+  }).isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
 };
 

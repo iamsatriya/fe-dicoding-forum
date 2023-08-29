@@ -24,7 +24,8 @@ function threadsReducer(threads = [], action = {}) {
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.downVotesBy,
           };
-        } else return thread;
+        }
+        return thread;
       });
     case ActionType.DOWN_VOTE_THREAD:
       return threads.map((thread) => {
@@ -44,7 +45,8 @@ function threadsReducer(threads = [], action = {}) {
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.upVotesBy,
           };
-        } else return thread;
+        }
+        return thread;
       });
     case ActionType.NEUTRAL_VOTE_THREAD:
       return threads.map((thread) => {
@@ -64,7 +66,8 @@ function threadsReducer(threads = [], action = {}) {
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.downVotesBy,
           };
-        } else return thread;
+        }
+        return thread;
       });
     default:
       return threads;
