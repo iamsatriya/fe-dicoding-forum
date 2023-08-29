@@ -165,7 +165,7 @@ const api = (() => {
     }
   }
 
-  async function getThreadsDetail({ threadId }) {
+  async function getThreadDetail({ threadId }) {
     try {
       const response = await fetch(`${BASE_URL}/threads/${threadId}`);
       const responseJson = await response.json();
@@ -367,7 +367,7 @@ const api = (() => {
     getAllUsers,
     createThread,
     getAllThreads,
-    getThreadsDetail,
+    getThreadDetail,
     createComment,
     upVoteThread,
     downVoteThread,

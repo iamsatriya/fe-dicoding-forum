@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   asyncUpVoteThread,
   asyncDownVoteThread,
@@ -20,7 +21,10 @@ function ThreadItems({
   upVotesBy,
   downVotesBy,
   totalComments,
+  isDisabled,
 }) {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const isUpVoteIncludesUserId = upVotesBy.includes(userId);
@@ -43,9 +47,18 @@ function ThreadItems({
     }
   };
 
+  const onClickToDetail = () => {
+    navigate(`/threads/${id}`);
+  };
+
   return (
     <article className="m-4 rounded-lg bg-[#f1f1f1] p-4 ">
-      <p className="font-poppins font-semibold text-3xl truncate">{title}</p>
+      <button
+        className="font-poppins font-semibold text-3xl truncate"
+        onClick={onClickToDetail}
+      >
+        {title}
+      </button>
       <section className="flex justify-between items-center my-2">
         <section className="flex items-center">
           <img
@@ -127,6 +140,7 @@ function ThreadItems({
         <button
           type="button"
           className="bg-primary rounded-lg text-white px-2 py-1"
+          onClick={onClickToDetail}
         >
           {totalComments} replies
         </button>
