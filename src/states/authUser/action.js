@@ -1,10 +1,10 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import toast from 'react-hot-toast';
-import api from '../../utils/api';
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import toast from "react-hot-toast";
+import api from "../../utils/api";
 
 const ActionType = {
-  SET_AUTH_USER: 'SET_AUTH_USER',
-  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+  SET_AUTH_USER: "SET_AUTH_USER",
+  UNSET_AUTH_USER: "UNSET_AUTH_USER",
 };
 
 function setAuthUserActionCreator(authUser) {
@@ -37,14 +37,14 @@ function asyncSetAuthUser({ email, password }) {
         toast.error(message);
       } else {
         dispatch(setAuthUserActionCreator(data));
-        toast.error(message);
+        toast.success(message);
       }
     }
     dispatch(hideLoading());
   };
 }
 
-function asyncUnserAuthUser() {
+function asyncUnsetAuthUser() {
   return async (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
     api.logout();
@@ -56,5 +56,5 @@ export {
   setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   asyncSetAuthUser,
-  asyncUnserAuthUser,
+  asyncUnsetAuthUser,
 };

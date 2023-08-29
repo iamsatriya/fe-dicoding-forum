@@ -19,7 +19,7 @@ function setIsPreloadActionCreator(isPreload) {
 function asyncPreloadProcess() {
   return async (dispatch) => {
     dispatch(showLoading());
-    const { error, data, message } = api.getOwnProfile();
+    const { error, data, message } = await api.getOwnProfile();
     if (error) {
       dispatch(setAuthUserActionCreator(null));
       toast.error(message);
