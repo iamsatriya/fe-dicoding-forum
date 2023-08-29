@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
+import LeaderboardsPage from "./pages/LeaderboardsPage";
 import Toast from "./components/utils/Toast";
 import Navigation from "./components/headers/Navigation";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
@@ -43,6 +44,7 @@ function App() {
       <main className="relative mb-4 top-20">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/leaderboards" element={<LeaderboardsPage />} />
           <Route path="/threads/:id" element={<DetailPage />} />
         </Routes>
       </main>
