@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import asyncPopulateUsersAndThreads from "../states/shared/action";
 import { asyncCreateThread } from "../states/threads/action";
 import ThreadItems from "../components/threads/ThreadItems";
 import InputText from "../components/inputs/InputText";
@@ -22,7 +22,6 @@ function HomePage() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
   } = useForm();
 

@@ -11,7 +11,6 @@ function LoginPage({ onOpenRegister }) {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm();
 
   const dispatch = useDispatch();

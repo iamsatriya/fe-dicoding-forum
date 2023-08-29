@@ -57,7 +57,6 @@ function neutralVoteThreadDetailActionCreator({ userId }) {
 }
 
 function createCommentActionCreator({ comment }) {
-  console.log("action creator", "comment", comment);
   return {
     type: ActionType.CREATE_COMMENT_THREAD_DETAIL,
     payload: {
@@ -119,7 +118,7 @@ function asyncUpVoteThreadDetail({ threadId }) {
         userId: authUser.id,
       }),
     );
-    const { error, message, data } = await api.upVoteThread({ threadId });
+    const { error, message } = await api.upVoteThread({ threadId });
     if (error) {
       toast.error(message);
       dispatch(
@@ -141,7 +140,7 @@ function asyncDownVoteThreadDetail({ threadId }) {
         userId: authUser.id,
       }),
     );
-    const { error, message, data } = await api.downVoteThread({ threadId });
+    const { error, message } = await api.downVoteThread({ threadId });
     if (error) {
       toast.error(message);
       dispatch(
@@ -163,7 +162,7 @@ function asyncNeutralVoteThreadDetail({
     dispatch(showLoading());
     const { authUser } = getState();
     dispatch(neutralVoteThreadDetailActionCreator({ userId: authUser.id }));
-    const { error, message, data } = await api.neutralVoteThread({ threadId });
+    const { error, message } = await api.neutralVoteThread({ threadId });
     if (error) {
       toast.error(message);
       if (neutralFromUp) {
@@ -201,7 +200,7 @@ function asyncUpVoteCommentThreadDetail({ threadId, commentId }) {
       authUser: { id: userId },
     } = getState();
     dispatch(upVoteCommentThreadDetailActionCreator({ userId, commentId }));
-    const { error, message, data } = await api.upVoteComment({
+    const { error, message } = await api.upVoteComment({
       threadId,
       commentId,
     });
@@ -222,7 +221,7 @@ function asyncDownVoteCommentThreadDetail({ threadId, commentId }) {
       authUser: { id: userId },
     } = getState();
     dispatch(downVoteCommentThreadDetailActionCreator({ userId, commentId }));
-    const { error, message, data } = await api.downVoteComment({
+    const { error, message } = await api.downVoteComment({
       threadId,
       commentId,
     });
@@ -242,7 +241,7 @@ function asyncNeutralVoteCommentThreadDetail({
   neutralFromUp = false,
   neutralFromDown = false,
 }) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch(showLoading());
     const {
       authUser: { id: userId },
@@ -250,7 +249,7 @@ function asyncNeutralVoteCommentThreadDetail({
     dispatch(
       neutralVoteCommentThreadDetailActionCreator({ commentId, userId }),
     );
-    const { error, message, data } = await api.neutralVoteComment({
+    const { error, message } = await api.neutralVoteComment({
       threadId,
       commentId,
     });

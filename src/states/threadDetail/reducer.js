@@ -91,7 +91,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                   )
                 : comment.downVotesBy,
             };
-          } else return comment;
+          }
+          return comment;
         }),
       };
     }
@@ -117,7 +118,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                   )
                 : comment.downVotesBy.concat([action.payload.userId]),
             };
-          } else return comment;
+          }
+          return comment;
         }),
       };
     }
@@ -143,7 +145,8 @@ function threadDetailReducer(threadDetail = null, action = {}) {
                   )
                 : comment.downVotesBy,
             };
-          } else return comment;
+          }
+          return comment;
         }),
       };
     }

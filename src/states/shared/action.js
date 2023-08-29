@@ -32,4 +32,4 @@ function asyncPopulateUsersAndThreads() {
   };
 }
 
-export { asyncPopulateUsersAndThreads };
+export default asyncPopulateUsersAndThreads;
