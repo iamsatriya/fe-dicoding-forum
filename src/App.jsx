@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import LoadingBar from "react-redux-loading-bar";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
@@ -42,6 +43,7 @@ function App() {
     <>
       <Navigation onLogout={onLogout} />
       <main className="relative mb-4 top-20">
+        <LoadingBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/leaderboards" element={<LeaderboardsPage />} />
