@@ -44,6 +44,7 @@ const api = (() => {
       });
       const responseJson = await response.json();
       const { status, message } = responseJson;
+      console.log('status', status, 'message', message)
       if (status !== "success") {
         throw new Error(message);
       }
@@ -52,6 +53,7 @@ const api = (() => {
       } = responseJson;
       return responseSuccess(user);
     } catch (error) {
+      console.log('catch')
       return responseFailed(error.message);
     }
   }

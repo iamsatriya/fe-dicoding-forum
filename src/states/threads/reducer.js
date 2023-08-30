@@ -42,7 +42,7 @@ function threadsReducer(threads = [], action = {}) {
               ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
               : thread.downVotesBy.concat([action.payload.userId]),
             upVotesBy: isIncludeInUpVotes
-              ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
+              ? thread.upVotesBy.filter((id) => id !== action.payload.userId)
               : thread.upVotesBy,
           };
         }

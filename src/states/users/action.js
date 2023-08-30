@@ -18,7 +18,7 @@ function receiveUsersActionCreator({ users }) {
 function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
     dispatch(showLoading());
-    const { error, message } = api.register({ name, email, password });
+    const { error, message } = await api.register({ name, email, password });
     if (error) {
       toast.error(message);
     } else {
