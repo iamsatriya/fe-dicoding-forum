@@ -249,7 +249,7 @@ function asyncNeutralVoteCommentThreadDetail({
     dispatch(
       neutralVoteCommentThreadDetailActionCreator({ commentId, userId }),
     );
-    const { error, message } = await api.neutralVoteComment({
+    const { error, message } = await api.neutralComment({
       threadId,
       commentId,
     });
@@ -270,6 +270,7 @@ function asyncNeutralVoteCommentThreadDetail({
 
 export {
   ActionType,
+  createCommentActionCreator,
   receiveThreadDetailActionCreator,
   clearThreadDetailActionCreator,
   upVoteThreadDetailActionCreator,
