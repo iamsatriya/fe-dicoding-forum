@@ -513,11 +513,12 @@ describe("asyncDownVoteCommentThreadDetail thunk", () => {
     toast.error = toast._error;
 
     delete api._upVoteComment;
+    delete api._downVoteComment;
     delete toast._error;
   });
 
   it("should dispatch action correctly when data fetching success", async () => {
-    api.upVoteComment = () => Promise.resolve(fakeDownVoteCommentResponse);
+    api.downVoteComment = () => Promise.resolve(fakeDownVoteCommentResponse);
 
     const getState = () => ({ authUser: { id: userId } });
     const dispatch = vi.fn();
