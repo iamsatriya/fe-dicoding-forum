@@ -24,7 +24,7 @@ describe("LoginPage component", () => {
         <LoginPage onOpenRegister={() => {}} />
       </Provider>,
     );
-    const emailInput = await screen.getByPlaceholderText("Enter your email");
+    const emailInput = screen.getByPlaceholderText("Enter your email");
 
     await userEvent.type(emailInput, "satriya@email.com");
 
@@ -37,7 +37,7 @@ describe("LoginPage component", () => {
         <LoginPage onOpenRegister={() => {}} />
       </Provider>,
     );
-    const passwordInput = await screen.getByPlaceholderText(
+    const passwordInput = screen.getByPlaceholderText(
       "Enter your password",
     );
 
@@ -53,7 +53,7 @@ describe("LoginPage component", () => {
         <LoginPage onOpenRegister={mockOnOpenRegister} />
       </Provider>,
     );
-    const buttonRegister = await screen.getByText('Create an account')
+    const buttonRegister = screen.getByText('Create an account')
 
     await userEvent.click(buttonRegister);
 
