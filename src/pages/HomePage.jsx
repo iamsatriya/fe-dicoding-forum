@@ -64,6 +64,7 @@ function HomePage() {
           <InputText
             name="title"
             title="Title"
+            placeholder="Enter the title here"
             register={register}
             ref={titleRef}
             error={errors.title?.message}
@@ -71,6 +72,7 @@ function HomePage() {
           <InputText
             name="body"
             title="Body"
+            placeholder="Enter the body here"
             register={register}
             error={errors.body?.message}
           />
@@ -79,6 +81,7 @@ function HomePage() {
               <InputText
                 name="category"
                 title="Category"
+                placeholder="Enter the category here"
                 isRequired={false}
                 register={register}
                 error={errors.category?.message}

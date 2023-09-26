@@ -50,7 +50,7 @@ function ThreadItems({
   };
 
   return (
-    <article className="m-4 rounded-lg bg-[#f1f1f1] p-4 ">
+    <article className="m-4 rounded-lg bg-[#f1f1f1] p-4">
       <button
         type="button"
         className="font-poppins font-semibold text-3xl truncate"
