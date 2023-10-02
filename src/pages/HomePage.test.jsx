@@ -1,7 +1,7 @@
 /**
  * skenario testing
  *
- * - LoginPage component
+ * - HomePage component
  *   - should handle title typing correctly
  *   - should handle body typing correctly
  *   - should handle category typing correctly

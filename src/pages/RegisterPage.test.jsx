@@ -18,7 +18,7 @@ import userEvent from "@testing-library/user-event";
 import store from "../states";
 import RegisterPage from "./RegisterPage";
 
-describe("LoginPage component", () => {
+describe("Register component", () => {
   afterEach(cleanup);
 
   it("should handle name typing correctly", async () => {
