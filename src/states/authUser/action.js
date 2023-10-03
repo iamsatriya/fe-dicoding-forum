@@ -37,7 +37,7 @@ function asyncSetAuthUser({ email, password }) {
         toast.error(message);
       } else {
         dispatch(setAuthUserActionCreator(data));
-        toast.success('make failed');
+        toast.success(message);
       }
     }
     dispatch(hideLoading());
